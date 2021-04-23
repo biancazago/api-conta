@@ -1,6 +1,5 @@
 package com.desafio.conta.service;
 
-import com.desafio.conta.error.RegraNegocioException;
 import com.desafio.conta.repository.UsuarioRepository;
 import com.desafio.conta.service.dto.ContaDTO;
 import com.desafio.conta.service.dto.DadosTransferenciaDTO;
@@ -8,6 +7,8 @@ import com.desafio.conta.service.dto.TransferenciaDTO;
 import com.desafio.conta.service.dto.UsuarioDTO;
 import com.desafio.conta.service.enumeration.TipoUsuarioEnum;
 import com.desafio.conta.service.mapper.UsuarioMapper;
+import com.desafio.conta.util.ConstantsUtil;
+import com.desafio.conta.util.RegraNegocioException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
@@ -39,7 +40,7 @@ public class UsuarioService {
 
     private Boolean validarCadastroUsuario(UsuarioDTO usuarioDTO) {
         if (usuarioRepository.validacaoUsuario(usuarioDTO.getCpfCnpj(), usuarioDTO.getEmail()) != null) {
-            throw new RegraNegocioException("CPF/CPNJ e/ou Email já cadastrados");
+            throw new RegraNegocioException(ConstantsUtil.CPF_CPNJ_EMAIL_INVALIDO);
         }
         return true;
     }
@@ -49,9 +50,7 @@ public class UsuarioService {
     }
 
     public UsuarioDTO obterPorId(Long id) {
-        return usuarioMapper.toDto(usuarioRepository.findById(id).orElseThrow(() -> {
-            throw new RegraNegocioException("Usuário destinatario não existe");
-        }));
+        return usuarioMapper.toDto(usuarioRepository.findById(id).orElse(null));
     }
 
     public DadosTransferenciaDTO obterDadosTransferencia(TransferenciaDTO transferenciaDTO) {

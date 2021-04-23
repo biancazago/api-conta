@@ -1,12 +1,13 @@
 package com.desafio.conta.service;
 
-import com.desafio.conta.error.AutorizadorException;
-import com.desafio.conta.error.RegraNegocioException;
 import com.desafio.conta.service.dto.DadosTransferenciaDTO;
 import com.desafio.conta.service.dto.MessagemDTO;
 import com.desafio.conta.service.dto.TransferenciaDTO;
 import com.desafio.conta.service.enumeration.AutorizadorEnum;
 import com.desafio.conta.service.feign.MockAutorizadorFeignClient;
+import com.desafio.conta.util.AutorizadorException;
+import com.desafio.conta.util.ConstantsUtil;
+import com.desafio.conta.util.RegraNegocioException;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,18 +35,21 @@ public class TransferirService {
             contaService.obterAtualizarValoresConta(transferenciaDTO.getIdUsuarioDestinatario(), dados.getIdUsuario(), transferenciaDTO.getValor());
             return concluirTransferencia();
         }
-        throw new AutorizadorException("Transferencia não autorizada");
+        throw new AutorizadorException(ConstantsUtil.TRANSFERENCIA_NAO_AUTORIZADA);
 
     }
 
     private void validarDadosUsuarioTransferencia(DadosTransferenciaDTO dados, TransferenciaDTO transferenciaDTO) {
         if (dados == null) {
-            throw new RegraNegocioException("Usuario Remetente não encontrado");
+            throw new RegraNegocioException(ConstantsUtil.REMETENTE_NAO_ENCONTRADO);
         }
         if (transferenciaDTO.getValor() > dados.getValor()) {
-            throw new RegraNegocioException("Usuário não possui valor para transferência");
+            throw new RegraNegocioException(ConstantsUtil.USUARIO_NAO_POSSUI_SALDO);
         }
-        usuarioService.obterPorId(transferenciaDTO.getIdUsuarioDestinatario());
+        if (usuarioService.obterPorId(transferenciaDTO.getIdUsuarioDestinatario()) == null) {
+            throw new RegraNegocioException(ConstantsUtil.DESTINATARIO_NAO_EXISTE);
+
+        }
 
     }
 
@@ -55,7 +59,7 @@ public class TransferirService {
         try {
             return mockAutorizadorFeignClient.autorizadorTrasferencia().getMessage();
         } catch (FeignException e) {
-            throw new AutorizadorException("not.found");
+            throw new AutorizadorException(ConstantsUtil.ERRO_AUTORIZADOR);
         }
     }
 
@@ -63,12 +67,12 @@ public class TransferirService {
     private MessagemDTO concluirTransferencia() {
         try {
             MessagemDTO mensagem = mockAutorizadorFeignClient.verificarConclusaoTransferencia();
-            if (mensagem.getMessage().equals(AutorizadorEnum.ENVIADO.getDescricao())) {
+            if (mensagem.getMessage() != null) {
                 return mensagem;
             }
-            throw new AutorizadorException("Transferencia não autorizada");
+            throw new AutorizadorException(ConstantsUtil.TRANSFERENCIA_NAO_AUTORIZADA);
         } catch (FeignException e) {
-            throw new AutorizadorException("not.found");
+            throw new AutorizadorException(ConstantsUtil.ERRO_AUTORIZADOR);
         }
     }
 }
