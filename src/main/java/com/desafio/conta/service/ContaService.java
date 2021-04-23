@@ -1,9 +1,13 @@
 package com.desafio.conta.service;
 
 import com.desafio.conta.repository.ContaRepository;
+import com.desafio.conta.service.dto.ContaDTO;
+import com.desafio.conta.service.enumeration.TipoEnum;
+import com.desafio.conta.service.mapper.ContaMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -11,5 +15,11 @@ import org.springframework.stereotype.Service;
 public class ContaService {
 
     private final ContaRepository contaRepository;
+
+    private final ContaMapper contaMapper;
+
+    public void salvar(ContaDTO contaDTO) {
+        contaRepository.save(contaMapper.toEntity(contaDTO));
+    }
 
 }
