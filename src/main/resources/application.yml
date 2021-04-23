@@ -21,3 +21,6 @@ spring:
 sprint:
   jackson:
     date-format: yyyy-MM-dd
+
+autorizador:
+  url: https://run.mocky.io/v3

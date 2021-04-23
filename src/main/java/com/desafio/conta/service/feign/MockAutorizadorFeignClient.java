@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-@FeignClient(name = "tranferencia", url = "https://run.mocky.io/v3")
+@FeignClient(name = "tranferencia", url = "${autorizador.url}")
 public interface MockAutorizadorFeignClient {
 
 

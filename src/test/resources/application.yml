@@ -10,3 +10,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+
+autorizador:
+  url: https://run.mocky.io/v3
