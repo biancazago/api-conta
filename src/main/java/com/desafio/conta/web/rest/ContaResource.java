@@ -18,5 +18,10 @@ public class ContaResource {
 
     private final ContaService contaService;
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> adicionarDinheiroConta(@PathVariable Long id, @RequestBody ValorDTO valorDTO) {
+        contaService.adicionarDinheiroConta(id, valorDTO.getValor());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

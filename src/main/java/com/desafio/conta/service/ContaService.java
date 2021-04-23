@@ -22,4 +22,9 @@ public class ContaService {
         contaRepository.save(contaMapper.toEntity(contaDTO));
     }
 
+    @Transactional
+    public void adicionarDinheiroConta(Long id, Double valor) {
+        contaRepository.adicionarDinheiroConta(id, valor);
+    }
+
 }
