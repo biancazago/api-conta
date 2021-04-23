@@ -48,6 +48,15 @@ public class UsuarioService {
         usuarioDTO.setSenha(passwordEncoder.encode(usuarioDTO.getSenha()));
     }
 
+    public UsuarioDTO obterPorId(Long id) {
+        return usuarioMapper.toDto(usuarioRepository.findById(id).orElseThrow(() -> {
+            throw new RegraNegocioException("Usuário destinatario não existe");
+        }));
+    }
+
+    public DadosTransferenciaDTO obterDadosTransferencia(TransferenciaDTO transferenciaDTO) {
+        return usuarioRepository.obterDadosTransferencia(transferenciaDTO.getIdUsuarioRemetente());
+    }
 
 
 }

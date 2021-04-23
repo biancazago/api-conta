@@ -27,4 +27,8 @@ public class ContaService {
         contaRepository.adicionarDinheiroConta(id, valor);
     }
 
+    public void obterAtualizarValoresConta(Long idUsuarioDestinario, Long idUsuarioRemetente, Double valor) {
+        contaRepository.atualizarValorConta(idUsuarioDestinario, valor, TipoEnum.DESTINATARIO);
+        contaRepository.atualizarValorConta(idUsuarioRemetente, valor, TipoEnum.REMETENTE);
+    }
 }

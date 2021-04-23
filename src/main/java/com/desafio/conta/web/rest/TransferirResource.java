@@ -20,5 +20,9 @@ public class TransferirResource {
 
     private final TransferirService transferirService;
 
+    @PutMapping
+    public ResponseEntity<MessagemDTO> transferir(@RequestBody @Valid TransferenciaDTO transferenciaDTO) {
+        return new ResponseEntity<>(transferirService.transferir(transferenciaDTO), HttpStatus.OK);
+    }
 
 }

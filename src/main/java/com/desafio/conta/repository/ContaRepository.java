@@ -11,7 +11,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContaRepository extends JpaRepository<Conta, Long> {
 
+    @Modifying
+    @Query(value = "UPDATE Conta c SET valor = valor + CASE WHEN :tipo = :remetente " +
+            " THEN - :valor ELSE :valor END " +
+            " WHERE c.usuario.id = :idUsuario")
+    void alterarValorConta(@Param("idUsuario") Long idUsuario, @Param("valor") Double valor, @Param("tipo") TipoEnum tipo, @Param("remetente") TipoEnum remetente);
 
+    default void atualizarValorConta(@Param("idUsuario") Long idUsuario, @Param("valor") Double valor, @Param("tipo") TipoEnum tipo) {
+        alterarValorConta(idUsuario, valor, tipo, TipoEnum.REMETENTE);
+    }
 
     @Modifying
     @Query(value = "UPDATE Conta c SET valor = valor + :valor WHERE c.id = :id")
