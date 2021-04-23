@@ -1,8 +1,8 @@
-package com.desafio.conta.provider;
+package com.desafio.conta.service.provider;
 
-import com.desafio.conta.dto.UsuarioDTO;
-import com.desafio.conta.interfaces.CnpjGroup;
-import com.desafio.conta.interfaces.CpfGroup;
+import com.desafio.conta.service.dto.UsuarioDTO;
+import com.desafio.conta.service.interfaces.CnpjGroup;
+import com.desafio.conta.service.interfaces.CpfGroup;
 import org.hibernate.validator.spi.group.DefaultGroupSequenceProvider;
 
 import java.util.ArrayList;
