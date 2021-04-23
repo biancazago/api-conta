@@ -1,7 +1,7 @@
 package com.desafio.conta.domain;
 
 
-import com.desafio.conta.enumeration.TipoUsuarioEnum;
+import com.desafio.conta.service.enumeration.TipoUsuarioEnum;
 import lombok.Getter;
 import lombok.Setter;
 

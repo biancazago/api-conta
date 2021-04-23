@@ -1,7 +1,7 @@
-package com.desafio.conta.dto;
+package com.desafio.conta.service.dto;
 
-import com.desafio.conta.enumeration.TipoUsuarioEnum;
-import com.desafio.conta.provider.UsuarioGroupSequenceProvider;
+import com.desafio.conta.service.enumeration.TipoUsuarioEnum;
+import com.desafio.conta.service.provider.UsuarioGroupSequenceProvider;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
