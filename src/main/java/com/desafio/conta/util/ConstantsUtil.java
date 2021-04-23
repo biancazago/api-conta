@@ -1,7 +1,7 @@
 package com.desafio.conta.util;
 
 public final class ConstantsUtil {
-    public static final String TRANSFERENCIA_NAO_AUTORIZADA = "Transferencia não autorizada");
+    public static final String TRANSFERENCIA_NAO_AUTORIZADA = "Transferencia não autorizada";
     public static final String REMETENTE_NAO_ENCONTRADO = "Usuario Remetente não encontrado";
     public static final String USUARIO_NAO_POSSUI_SALDO = "Usuário não possui valor para transferência";
     public static final String ERRO_AUTORIZADOR = "Erro ao conectar com autorizador";
