@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="20210418180000-1" author="bianca.zago">
+            <createTable  tableName="TB_USUARIO"  remarks="Tabela usuário">
+                <column name="ID_USUARIO" type="bigint" autoIncrement="true" remarks="Chave primária">
+                    <constraints primaryKey="true" nullable="false"/>
+                </column>
+
+                <column name="NOME" type="varchar(200)" remarks="Nome do usuário">
+                    <constraints nullable="false"/>
+                </column>
+
+                <column name="TIPO_USUARIO" type="ENUM('LOJISTA','COMUM')" remarks="Tipo do usuário">
+                    <constraints nullable="false"/>
+                </column>
+
+                <column name="EMAIL" type="varchar(200)" remarks="Email do usuário">
+                    <constraints nullable="false"/>
+                </column>
+
+                <column name="CPF_CNPJ" type="varchar(50)" remarks="CPF ou CNPJ do usuário">
+                    <constraints nullable="false"/>
+                </column>
+
+                <column name="SENHA" type="VARCHAR(200)" remarks="Senha do usuário)">
+                    <constraints nullable="true"/>
+                </column>
+            </createTable>
+
+        <addUniqueConstraint tableName="TB_USUARIO" columnNames="EMAIL"/>
+        <addUniqueConstraint tableName="TB_USUARIO" columnNames="CPF_CNPJ"/>
+
+    </changeSet>
+
+
+
+</databaseChangeLog>
