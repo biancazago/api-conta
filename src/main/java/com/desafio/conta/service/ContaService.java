@@ -22,4 +22,13 @@ public class ContaService {
         contaRepository.save(contaMapper.toEntity(contaDTO));
     }
 
+    @Transactional
+    public void adicionarDinheiroConta(Long id, Double valor) {
+        contaRepository.adicionarDinheiroConta(id, valor);
+    }
+
+    public void obterAtualizarValoresConta(Long idUsuarioDestinario, Long idUsuarioRemetente, Double valor) {
+        contaRepository.atualizarValorConta(idUsuarioDestinario, valor, TipoEnum.DESTINATARIO);
+        contaRepository.atualizarValorConta(idUsuarioRemetente, valor, TipoEnum.REMETENTE);
+    }
 }
