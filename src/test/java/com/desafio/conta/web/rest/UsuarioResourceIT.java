@@ -30,9 +30,18 @@ public class UsuarioResourceIT extends IntTestComum {
                 .content(TestUtil.convertObjectToJsonBytes(criarUsuarioDTO())))
                 .andExpect(status().isBadRequest());
 
+        getMockMvc().perform(post(API_USUARIO)
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(criarUsuarioPjDTO())))
+                .andExpect(status().isOk());
+
     }
 
     public UsuarioDTO criarUsuarioDTO() {
         return new UsuarioDTO("Ana Souza", TipoUsuarioEnum.COMUM, "963.858.180-80", "heloo@xx.com", "123");
+    }
+
+    public UsuarioDTO criarUsuarioPjDTO() {
+        return new UsuarioDTO("PicPay", TipoUsuarioEnum.LOJISTA, "28.338.819/0001-82", "pj@xx.com", "123");
     }
 }

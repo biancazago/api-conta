@@ -66,11 +66,7 @@ public class TransferirService {
 
     private MessagemDTO concluirTransferencia() {
         try {
-            MessagemDTO mensagem = mockAutorizadorFeignClient.verificarConclusaoTransferencia();
-            if (mensagem.getMessage() != null) {
-                return mensagem;
-            }
-            throw new AutorizadorException(ConstantsUtil.TRANSFERENCIA_NAO_AUTORIZADA);
+            return mockAutorizadorFeignClient.verificarConclusaoTransferencia();
         } catch (FeignException e) {
             throw new AutorizadorException(ConstantsUtil.ERRO_AUTORIZADOR);
         }

@@ -35,6 +35,11 @@ public class TranferirResourceIT extends IntTestComum {
 
         getMockMvc().perform(put(API_TRANSFERIR)
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(criarTransferenciaDTO(usuarioDestinatario.getId(), usuario.getId()))))
+                .andExpect(status().isBadRequest());
+
+        getMockMvc().perform(put(API_TRANSFERIR)
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(criarTransferenciaDTO(usuario.getId(), usuarioDestinatario.getId()))))
                 .andExpect(status().isOk());
 
