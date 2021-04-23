@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="20210419180000-1" author="bianca.zago">
+            <createTable  tableName="TB_CONTA"  remarks="Tabela conta">
+                <column name="ID_CONTA" type="bigint" autoIncrement="true" remarks="Chave primária">
+                    <constraints primaryKey="true" nullable="false"/>
+                </column>
+
+                <column name="VALOR" type="FLOAT" remarks="Valor presente na conta do usuario">
+                    <constraints nullable="true"/>
+                </column>
+
+                <column name="FK_USUARIO" type="bigint" remarks="Chave da tabela usuário">
+                    <constraints nullable="false"/>
+                </column>
+            </createTable>
+
+        <addForeignKeyConstraint baseTableName="TB_CONTA" baseColumnNames="FK_USUARIO" constraintName="FK_USUARIO" referencedTableName="TB_USUARIO"
+                                 referencedColumnNames="ID_USUARIO"></addForeignKeyConstraint>
+    </changeSet>
+
+
+
+</databaseChangeLog>
