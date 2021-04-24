@@ -11,12 +11,14 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ContaDTO implements Serializable {
+public class DadosContaDTO implements Serializable {
 
     private Long id;
 
-    private Double saldo;
-
     private Long idUsuario;
+
+    private String nomeUsuario;
+
+    private Double valor;
 
 }

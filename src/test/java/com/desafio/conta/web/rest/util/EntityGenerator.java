@@ -24,7 +24,7 @@ public final class EntityGenerator {
         em.flush();
 
         Conta conta = new Conta();
-        conta.setValor(1000D);
+        conta.setSaldo(1000D);
         conta.setUsuario(usuario);
         em.persist(conta);
         em.flush();
@@ -44,7 +44,7 @@ public final class EntityGenerator {
         em.flush();
 
         Conta conta = new Conta();
-        conta.setValor(0D);
+        conta.setSaldo(0D);
         conta.setUsuario(usuario);
         em.persist(conta);
         em.flush();
@@ -64,7 +64,7 @@ public final class EntityGenerator {
         em.flush();
 
         Conta conta = new Conta();
-        conta.setValor(1000D);
+        conta.setSaldo(1000D);
         conta.setUsuario(usuario);
         em.persist(conta);
         em.flush();

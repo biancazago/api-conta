@@ -10,7 +10,7 @@
                     <constraints primaryKey="true" nullable="false"/>
                 </column>
 
-                <column name="VALOR" type="FLOAT" remarks="Valor presente na conta do usuario">
+                <column name="SALDO" type="FLOAT" remarks="Valor presente na conta do usuario">
                     <constraints nullable="true"/>
                 </column>
 

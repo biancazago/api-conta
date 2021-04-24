@@ -33,13 +33,13 @@ public class Usuario implements Serializable {
     @Enumerated(value = EnumType.STRING)
     private TipoUsuarioEnum tipoUsuario;
 
-    @Column(name = "CPF_CNPJ", nullable = false, unique = true)
+    @Column(name = "CPF_CNPJ", nullable = false, unique = true, length = 14)
     private String cpfCnpj;
 
-    @Column(name = "EMAIL", nullable = false, unique = true)
+    @Column(name = "EMAIL", nullable = false, unique = true, length = 200)
     private String email;
 
-    @Column(name = "SENHA", nullable = false)
+    @Column(name = "SENHA", nullable = false, length = 60)
     private String senha;
 
 }

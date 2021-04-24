@@ -29,20 +29,18 @@ public class UsuarioService {
     private final ApplicationEventPublisher applicationEventPublisher;
 
     public void salvar(UsuarioDTO usuarioDTO) {
-        if (Boolean.TRUE.equals(validarCadastroUsuario(usuarioDTO))) {
-            criptografarSenha(usuarioDTO);
-            usuarioDTO.setTipoUsuario(usuarioDTO.getCpfCnpj().length() == 14 ? TipoUsuarioEnum.LOJISTA : TipoUsuarioEnum.COMUM);
-            Long id = usuarioRepository.saveAndFlush(usuarioMapper.toEntity(usuarioDTO)).getId();
+        validarCadastroUsuario(usuarioDTO);
+        criptografarSenha(usuarioDTO);
+        usuarioDTO.setTipoUsuario(usuarioDTO.getCpfCnpj().length() == 14 ? TipoUsuarioEnum.LOJISTA : TipoUsuarioEnum.COMUM);
+        Long id = usuarioRepository.saveAndFlush(usuarioMapper.toEntity(usuarioDTO)).getId();
 
-            applicationEventPublisher.publishEvent(new ContaDTO(null, 0D, id));
-        }
+        applicationEventPublisher.publishEvent(new ContaDTO(null, 0D, id));
     }
 
-    private Boolean validarCadastroUsuario(UsuarioDTO usuarioDTO) {
+    private void validarCadastroUsuario(UsuarioDTO usuarioDTO) {
         if (usuarioRepository.validacaoUsuario(usuarioDTO.getCpfCnpj(), usuarioDTO.getEmail()) != null) {
             throw new RegraNegocioException(ConstantsUtil.CPF_CPNJ_EMAIL_INVALIDO);
         }
-        return true;
     }
 
     private void criptografarSenha(UsuarioDTO usuarioDTO) {

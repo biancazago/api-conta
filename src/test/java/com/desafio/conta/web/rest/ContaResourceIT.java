@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -25,7 +26,7 @@ public class ContaResourceIT extends IntTestComum {
 
     @Test
     @Transactional
-    public void salvar() throws Exception {
+    public void adicionarDinheiro() throws Exception {
 
         Conta conta = EntityGenerator.cadastraConta(em);
 
@@ -36,6 +37,17 @@ public class ContaResourceIT extends IntTestComum {
 
     }
 
+    @Test
+    @Transactional
+    public void obterContaUsuario() throws Exception {
+
+        Conta conta = EntityGenerator.cadastraConta(em);
+
+        getMockMvc().perform(get(API_CONTA + conta.getId())
+                .contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
+
+    }
     public ValorDTO criarValorDTO() {
         return new ValorDTO(0D);
     }

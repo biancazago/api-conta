@@ -22,11 +22,11 @@
                     <constraints nullable="false"/>
                 </column>
 
-                <column name="CPF_CNPJ" type="varchar(50)" remarks="CPF ou CNPJ do usuário">
+                <column name="CPF_CNPJ" type="varchar(14)" remarks="CPF ou CNPJ do usuário">
                     <constraints nullable="false"/>
                 </column>
 
-                <column name="SENHA" type="VARCHAR(200)" remarks="Senha do usuário)">
+                <column name="SENHA" type="VARCHAR(60)" remarks="Senha do usuário">
                     <constraints nullable="true"/>
                 </column>
             </createTable>

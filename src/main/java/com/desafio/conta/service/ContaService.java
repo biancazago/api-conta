@@ -2,6 +2,7 @@ package com.desafio.conta.service;
 
 import com.desafio.conta.repository.ContaRepository;
 import com.desafio.conta.service.dto.ContaDTO;
+import com.desafio.conta.service.dto.DadosContaDTO;
 import com.desafio.conta.service.enumeration.TipoEnum;
 import com.desafio.conta.service.mapper.ContaMapper;
 import lombok.RequiredArgsConstructor;
@@ -31,4 +32,9 @@ public class ContaService {
         contaRepository.atualizarValorConta(idUsuarioDestinario, valor, TipoEnum.DESTINATARIO);
         contaRepository.atualizarValorConta(idUsuarioRemetente, valor, TipoEnum.REMETENTE);
     }
+
+    public DadosContaDTO obterContaUsuario(Long id) {
+        return contaRepository.obterContaUsuario(id);
+    }
+
 }

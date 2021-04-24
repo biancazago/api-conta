@@ -26,8 +26,8 @@ public class Conta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "VALOR", nullable = false)
-    private Double valor;
+    @Column(name = "SALDO", nullable = false)
+    private Double saldo;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_USUARIO")
