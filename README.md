@@ -124,6 +124,10 @@ Envio
         "idUsuarioDestinatario":"2",
         "valor":"50"
     }
+Retorno
+    {
+        "message": "Enviado"
+    }
 ```` 
    
 ## Futuras implementações
