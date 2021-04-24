@@ -15,7 +15,7 @@ public class ContaDTO implements Serializable {
 
     private Long id;
 
-    private Double valor;
+    private Double saldo;
 
     private Long idUsuario;
 

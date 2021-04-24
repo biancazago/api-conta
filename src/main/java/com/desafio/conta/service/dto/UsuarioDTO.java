@@ -1,6 +1,7 @@
 package com.desafio.conta.service.dto;
 
 import com.desafio.conta.service.enumeration.TipoUsuarioEnum;
+import com.desafio.conta.service.interfaces.CnpjGroup;
 import com.desafio.conta.service.interfaces.CpfGroup;
 import com.desafio.conta.service.provider.UsuarioGroupSequenceProvider;
 import lombok.AllArgsConstructor;
@@ -30,7 +31,7 @@ public class UsuarioDTO implements Serializable {
     private TipoUsuarioEnum tipoUsuario;
 
     @CPF(groups = CpfGroup.class)
-    @CNPJ(groups = CNPJ.class)
+    @CNPJ(groups = CnpjGroup.class)
     @NotNull(message = "CPF/CNPJ é campo obrigatório")
     @NotBlank(message = "CPF/CNPJ deve ser preenchido")
     private String cpfCnpj;
