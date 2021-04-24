@@ -75,9 +75,9 @@ Api exerterna não autorizar: "Transferencia não autorizada"
  ![alt text](/imagens/requisicao.png)
 
 
-- Incluir usuário - api/usuario  (POST)
+- Incluir usuário - /api/usuario  (POST)
     
-    - api/usuario  
+    - /api/usuario  
 ```` java 
 Envio
      {
@@ -95,16 +95,16 @@ Envio
      } 
 
 ```` 
-- Incluir saldo na conta do Usuário - api/conta/{id} (PATCH) 
-    - api/conta/1 
+- Incluir saldo na conta do Usuário - /api/conta/{id} (PATCH) 
+    - /api/conta/1 
 ```` java 
 Envio
     {
         "valor":"200"
     }
 ```` 
-- Visualizar conta do Usuário - api/conta/{id} (GET) 
-    - api/conta/1 
+- Visualizar conta do Usuário - /api/conta/{id} (GET) 
+    - /api/conta/1 
     
 ```` java 
 Retorno
@@ -116,7 +116,7 @@ Retorno
     }
 ```` 
 - Transferir - api/transferir (PUT)
-    - api/transferir
+    - /api/transferir
 ```` java
 Envio 
     {
