@@ -40,17 +40,27 @@ public class TransferirService {
     }
 
     private void validarDadosUsuarioTransferencia(DadosTransferenciaDTO dados, TransferenciaDTO transferenciaDTO) {
+        validarRemetente(dados);
+        validarValorEnviado(transferenciaDTO.getValor(), dados.getValor());
+        validarDestinatario(transferenciaDTO);
+    }
+
+    private void validarRemetente(DadosTransferenciaDTO dados) {
         if (dados == null) {
             throw new RegraNegocioException(ConstantsUtil.REMETENTE_NAO_ENCONTRADO);
         }
-        if (transferenciaDTO.getValor() > dados.getValor()) {
-            throw new RegraNegocioException(ConstantsUtil.USUARIO_NAO_POSSUI_SALDO);
-        }
+    }
+
+    private void validarDestinatario(TransferenciaDTO transferenciaDTO) {
         if (usuarioService.obterPorId(transferenciaDTO.getIdUsuarioDestinatario()) == null) {
             throw new RegraNegocioException(ConstantsUtil.DESTINATARIO_NAO_EXISTE);
-
         }
+    }
 
+    private void validarValorEnviado(Double valorEnviado, Double valorAtualConta) {
+        if (valorEnviado > valorAtualConta) {
+            throw new RegraNegocioException(ConstantsUtil.USUARIO_NAO_POSSUI_SALDO);
+        }
     }
 
     private String validarTransferencia(DadosTransferenciaDTO dados, TransferenciaDTO transferenciaDTO) {
