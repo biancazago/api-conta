@@ -74,11 +74,12 @@ Api exerterna não autorizar: "Transferencia não autorizada"
     
     - api/usuario  
 ```` java 
+Envio
      {
-      	"nome":"Elias Julio da Conceição",
-      	"senha":"123",
-      	"cpfCnpj":"037.085.979-07",
-      	"email":"elias@gmail.com"
+        "nome":"Elias Julio da Conceição",
+        "senha":"123",
+        "cpfCnpj":"037.085.979-07",
+        "email":"elias@gmail.com"
      }
        ou
      {
@@ -92,21 +93,32 @@ Api exerterna não autorizar: "Transferencia não autorizada"
 - Incluir saldo na conta do Usuário - api/conta/{id} (PATCH) 
     - api/conta/1 
 ```` java 
-{
-	"valor":"500"
-}
+Envio
+    {
+        "valor":"500"
+    }
 ```` 
 - Visualizar conta do Usuário - api/conta/{id} (GET) 
     - api/conta/1 
-
+    
+```` java 
+Retorno
+    {
+      "id": 1,
+      "idUsuario": 1,
+      "nomeUsuario": "Elias Julio da Conceição",
+      "valor": 150.0
+    }
+```` 
 - Transferir - api/transferir (PUT)
     - api/transferir
-```` java 
-{
-	"idUsuarioRemetente":"1",
-	"idUsuarioDestinatario":"2",
-	"valor":"50"
-}
+```` java
+Envio 
+    {
+        "idUsuarioRemetente":"1",
+        "idUsuarioDestinatario":"2",
+        "valor":"50"
+    }
 ```` 
    
 ## Futuras implementações
