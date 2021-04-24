@@ -63,12 +63,17 @@ Api exerterna não autorizar: "Transferencia não autorizada"
 
  ### Estrutura do Projeto
 
- 
+  ![alt text](/imagens/estrutura_projeto.png)
+
  ### Modelagem do banco 
 
- 
+ ![alt text](/imagens/modelagem_banco.png)
+
  
 ## Exemplos de requisições
+
+ ![alt text](/imagens/requisicao.png)
+
 
 - Incluir usuário - api/usuario  (POST)
     
