@@ -1,7 +1,8 @@
 package com.desafio.conta.web.rest;
 
 import com.desafio.conta.service.TransferirService;
-import com.desafio.conta.service.dto.TransferenciaDTO;
+import com.desafio.conta.service.dto.DadosTransferenciaDTO;
+import com.desafio.conta.service.dto.MensagemDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class TransferirResource {
     private final TransferirService transferirService;
 
     @PutMapping
-    public ResponseEntity<TransferenciaDTO> transferir(@RequestBody @Valid TransferenciaDTO transferenciaDTO) {
+    public ResponseEntity<MensagemDTO> transferir(@RequestBody @Valid DadosTransferenciaDTO transferenciaDTO) {
         return new ResponseEntity<>(transferirService.transferir(transferenciaDTO), HttpStatus.OK);
     }
 

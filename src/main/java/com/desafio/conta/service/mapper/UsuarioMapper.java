@@ -10,7 +10,5 @@ public interface UsuarioMapper {
 
     Usuario toEntity(UsuarioDTO var);
 
-    UsuarioDTO toDto(Usuario var);
-
     UsuarioListDTO toDtoList(Usuario var);
 }

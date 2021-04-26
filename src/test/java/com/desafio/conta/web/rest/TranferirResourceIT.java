@@ -2,7 +2,7 @@ package com.desafio.conta.web.rest;
 
 import com.desafio.conta.config.MockConfiguration;
 import com.desafio.conta.domain.Usuario;
-import com.desafio.conta.service.dto.TransferenciaDTO;
+import com.desafio.conta.service.dto.DadosTransferenciaDTO;
 import com.desafio.conta.util.IntTestComum;
 import com.desafio.conta.web.rest.util.EntityGenerator;
 import com.desafio.conta.web.rest.util.TestUtil;
@@ -55,7 +55,7 @@ public class TranferirResourceIT extends IntTestComum {
 
     }
 
-    public TransferenciaDTO criarTransferenciaDTO(Long idRemetente, Long idDestinatario) {
-        return new TransferenciaDTO(idRemetente, idDestinatario, 50D);
+    public DadosTransferenciaDTO criarTransferenciaDTO(Long idRemetente, Long idDestinatario) {
+        return new DadosTransferenciaDTO(idRemetente, idDestinatario, 50D);
     }
 }

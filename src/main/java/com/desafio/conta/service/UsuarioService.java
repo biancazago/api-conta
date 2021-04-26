@@ -3,7 +3,6 @@ package com.desafio.conta.service;
 import com.desafio.conta.repository.UsuarioRepository;
 import com.desafio.conta.service.dto.ContaDTO;
 import com.desafio.conta.service.dto.DadosTransferenciaDTO;
-import com.desafio.conta.service.dto.TransferenciaDTO;
 import com.desafio.conta.service.dto.UsuarioDTO;
 import com.desafio.conta.service.dto.UsuarioListDTO;
 import com.desafio.conta.service.enumeration.TipoUsuarioEnum;
@@ -52,7 +51,7 @@ public class UsuarioService {
         return usuarioMapper.toDtoList(usuarioRepository.findById(id).orElseThrow(() -> new RegraNegocioException(ConstantsUtil.USUARIO_NAO_ENCONTRADO)));
     }
 
-    public DadosTransferenciaDTO obterDadosTransferencia(TransferenciaDTO transferenciaDTO) {
+    public DadosTransferenciaDTO obterDadosTransferencia(DadosTransferenciaDTO transferenciaDTO) {
         DadosTransferenciaDTO dadosTransferenciaDTO = usuarioRepository.obterDadosTransferencia(transferenciaDTO.getIdUsuarioRemetente(), transferenciaDTO.getIdUsuarioDestinatario());
         if(dadosTransferenciaDTO == null) {
             throw new RegraNegocioException(ConstantsUtil.ERRO_DADOS_TRANSAFERENCIA);

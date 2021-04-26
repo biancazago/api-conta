@@ -11,6 +11,4 @@ public interface ContaMapper {
     @Mapping(source = "idUsuario", target = "usuario.id")
     Conta toEntity(ContaDTO var);
 
-    @Mapping(source = "usuario.id", target = "idUsuario")
-    ContaDTO toDto(Conta var);
 }

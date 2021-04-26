@@ -14,8 +14,9 @@ public class DadosTransferenciaDTO implements Serializable {
 
     private Long idUsuarioRemetente;
 
-    private Double saldoUsuarioRemetente;
-
     private Long idUsuarioDestinatario;
+
+    private Double valor;
+
 
 }

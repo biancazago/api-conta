@@ -37,7 +37,7 @@ public class ContaService {
 
     public DadosContaDTO obterContaUsuario(Long id) {
         DadosContaDTO dadosContaDTO = contaRepository.obterContaUsuario(id);
-        if(dadosContaDTO == null) {
+        if (dadosContaDTO == null) {
             throw new RegraNegocioException(ConstantsUtil.USUARIO_NAO_ENCONTRADO);
         }
         return dadosContaDTO;

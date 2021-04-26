@@ -4,7 +4,6 @@ import com.desafio.conta.domain.Transferencia;
 import com.desafio.conta.repository.TransferenciaRepository;
 import com.desafio.conta.service.dto.DadosTransferenciaDTO;
 import com.desafio.conta.service.dto.MensagemDTO;
-import com.desafio.conta.service.dto.TransferenciaDTO;
 import com.desafio.conta.service.enumeration.AutorizadorEnum;
 import com.desafio.conta.service.feign.MockAutorizadorFeignClient;
 import com.desafio.conta.service.mapper.TransferenciaMapper;
@@ -37,20 +36,21 @@ public class TransferirService {
     private final MockAutorizadorFeignClient mockAutorizadorFeignClient;
 
     @Transactional(rollbackFor = ExecutionException.class, timeout = 5)
-    public TransferenciaDTO transferir(TransferenciaDTO transferenciaDTO) {
+    public MensagemDTO transferir(DadosTransferenciaDTO transferenciaDTO) {
         if (validarTransferencia(transferenciaDTO).equals(AutorizadorEnum.AUTORIZADO.getDescricao())) {
             contaService.obterAtualizarValoresConta(transferenciaDTO.getIdUsuarioDestinatario(), transferenciaDTO.getIdUsuarioRemetente(), transferenciaDTO.getValor());
-            return salvarTransferencia(transferenciaDTO);
+            salvarTransferencia(transferenciaDTO);
+            return concluirTransferencia();
         }
         throw new AutorizadorException(ConstantsUtil.TRANSFERENCIA_NAO_AUTORIZADA);
 
     }
 
-    private void validarDadosUsuarioTransferencia(TransferenciaDTO transferenciaDTO) {
+    private void validarDadosUsuarioTransferencia(DadosTransferenciaDTO transferenciaDTO) {
         DadosTransferenciaDTO dados = usuarioService.obterDadosTransferencia(transferenciaDTO);
         validarRemetente(dados.getIdUsuarioRemetente());
         validarDestinatario(dados.getIdUsuarioDestinatario());
-        validarValorEnviado(transferenciaDTO.getValor(), dados.getSaldoUsuarioRemetente());
+        validarValorEnviado(transferenciaDTO.getValor(), dados.getValor());
     }
 
     private void validarRemetente(Long idRemetente) {
@@ -60,7 +60,7 @@ public class TransferirService {
     }
 
     private void validarDestinatario(Long idDestinatario) {
-        if(idDestinatario == null) {
+        if (idDestinatario == null) {
             throw new RegraNegocioException(ConstantsUtil.DESTINATARIO_NAO_ENCONTRADO);
         }
     }
@@ -71,7 +71,7 @@ public class TransferirService {
         }
     }
 
-    private String validarTransferencia(TransferenciaDTO transferenciaDTO) {
+    private String validarTransferencia(DadosTransferenciaDTO transferenciaDTO) {
         validarDadosUsuarioTransferencia(transferenciaDTO);
         try {
             return mockAutorizadorFeignClient.autorizadorTrasferencia().getMessage();
@@ -80,10 +80,18 @@ public class TransferirService {
         }
     }
 
+    private MensagemDTO concluirTransferencia() {
+        try {
+            return mockAutorizadorFeignClient.verificarConclusaoTransferencia();
+        } catch (FeignException e) {
+            throw new AutorizadorException(ConstantsUtil.ERRO_AUTORIZADOR);
+        }
+    }
 
-    private TransferenciaDTO salvarTransferencia(TransferenciaDTO transferenciaDTO) {
+
+    private void salvarTransferencia(DadosTransferenciaDTO transferenciaDTO) {
         Transferencia transferencia = transferenciaMapper.toEntity(transferenciaDTO);
         transferencia.setData(LocalDateTime.now());
-        return transferenciaMapper.toDto(transferenciaRepository.save(transferencia));
+        transferenciaRepository.save(transferencia);
     }
 }
