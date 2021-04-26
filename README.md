@@ -129,9 +129,7 @@ Retorno
         "message": "Enviado"
     }
 ```` 
-   
-## Futuras implementações
-- Implementar a notificação para o usuário.
+ 
 
 ## Proposta de melhoria na arquitetura
 - Dividir em microserviços, parte de cadastro de usuário em um microserviço separado, para que futuramente possa ser consumidos 
