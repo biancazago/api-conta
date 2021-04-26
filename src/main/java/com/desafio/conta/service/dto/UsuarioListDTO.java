@@ -1,10 +1,10 @@
 package com.desafio.conta.service.dto;
 
+import com.desafio.conta.service.enumeration.TipoUsuarioEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 
@@ -12,14 +12,16 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DadosContaDTO extends RepresentationModel<DadosContaDTO> implements Serializable {
+public class UsuarioListDTO implements Serializable {
 
     private Long id;
 
-    private Long idUsuario;
+    private String nome;
 
-    private String nomeUsuario;
+    private TipoUsuarioEnum tipoUsuario;
 
-    private Double valor;
+    private String cpfCnpj;
+
+    private String email;
 
 }

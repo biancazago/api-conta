@@ -1,6 +1,6 @@
 package com.desafio.conta.config;
 
-import com.desafio.conta.service.dto.MessagemDTO;
+import com.desafio.conta.service.dto.MensagemDTO;
 import com.desafio.conta.service.feign.MockAutorizadorFeignClient;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -17,11 +17,11 @@ public class MockConfiguration {
 
     @PostConstruct
     private void mockServices() {
-        MessagemDTO mensagemAutorizado = new MessagemDTO();
+        MensagemDTO mensagemAutorizado = new MensagemDTO();
         mensagemAutorizado.setMessage("Autorizado");
         Mockito.when(mockAutorizadorFeignClient.autorizadorTrasferencia()).thenReturn(mensagemAutorizado);
 
-        MessagemDTO mensagemConcluido = new MessagemDTO();
+        MensagemDTO mensagemConcluido = new MensagemDTO();
         mensagemConcluido.setMessage("Enviado");
         Mockito.when(mockAutorizadorFeignClient.verificarConclusaoTransferencia()).thenReturn(mensagemConcluido);
 

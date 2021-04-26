@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/conta")
@@ -28,7 +31,9 @@ public class ContaResource {
 
     @GetMapping("/{id}")
     public ResponseEntity<DadosContaDTO> obterContaUsuario(@PathVariable Long id) {
-        return new ResponseEntity<>(contaService.obterContaUsuario(id), HttpStatus.OK);
+        DadosContaDTO dadosContaDTO = contaService.obterContaUsuario(id);
+        dadosContaDTO.add(linkTo(methodOn(UsuarioResource.class).obterId(id)).withRel("usuario"));
+        return new ResponseEntity<>(dadosContaDTO, HttpStatus.OK);
     }
 
 

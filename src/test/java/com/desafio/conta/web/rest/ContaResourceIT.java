@@ -43,9 +43,13 @@ public class ContaResourceIT extends IntTestComum {
 
         Conta conta = EntityGenerator.cadastraConta(em);
 
-        getMockMvc().perform(get(API_CONTA + conta.getId())
+        getMockMvc().perform(get(API_CONTA + conta.getUsuario().getId())
                 .contentType(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
+
+        getMockMvc().perform(get(API_CONTA + "/19999999")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(status().isBadRequest());
 
     }
     public ValorDTO criarValorDTO() {
