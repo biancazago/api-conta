@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class MessagemDTO implements Serializable {
+public class MensagemDTO implements Serializable {
 
     private String message;
 

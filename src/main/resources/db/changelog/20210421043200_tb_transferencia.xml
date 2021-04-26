@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="20210419180000-1" author="bianca.zago">
+            <createTable  tableName="TB_TRANSFERENCIA"  remarks="Tabela de Transferência">
+                <column name="ID_TRANSFERENCIA" type="bigint" autoIncrement="true" remarks="Chave primária">
+                    <constraints primaryKey="true" nullable="false"/>
+                </column>
+
+                <column name="VALOR" type="DOUBLE" remarks="Valor enviado na transferencia">
+                    <constraints nullable="true"/>
+                </column>
+
+                <column name="ID_USUARIO_DESTINATARIO" type="bigint" remarks="Id do usuário destinario">
+                    <constraints nullable="false"/>
+                </column>
+
+                <column name="ID_USUARIO_REMETENTE" type="bigint" remarks="Id do usuário remetente">
+                    <constraints nullable="false"/>
+                </column>
+
+                <column name="DATA_HORA" type="TIMESTAMP" remarks="Data e hora do registro">
+                    <constraints nullable="false"/>
+                </column>
+            </createTable>
+
+    </changeSet>
+
+
+
+</databaseChangeLog>

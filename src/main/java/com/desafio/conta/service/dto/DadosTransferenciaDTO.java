@@ -12,8 +12,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class DadosTransferenciaDTO implements Serializable {
 
-    private Long idUsuario;
+    private Long idUsuarioRemetente;
 
-    private Double valor;
+    private Double saldoUsuarioRemetente;
+
+    private Long idUsuarioDestinatario;
 
 }

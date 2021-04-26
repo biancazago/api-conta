@@ -5,6 +5,8 @@ import com.desafio.conta.service.dto.ContaDTO;
 import com.desafio.conta.service.dto.DadosContaDTO;
 import com.desafio.conta.service.enumeration.TipoEnum;
 import com.desafio.conta.service.mapper.ContaMapper;
+import com.desafio.conta.util.ConstantsUtil;
+import com.desafio.conta.util.RegraNegocioException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,7 +36,11 @@ public class ContaService {
     }
 
     public DadosContaDTO obterContaUsuario(Long id) {
-        return contaRepository.obterContaUsuario(id);
+        DadosContaDTO dadosContaDTO = contaRepository.obterContaUsuario(id);
+        if(dadosContaDTO == null) {
+            throw new RegraNegocioException(ConstantsUtil.USUARIO_NAO_ENCONTRADO);
+        }
+        return dadosContaDTO;
     }
 
 }

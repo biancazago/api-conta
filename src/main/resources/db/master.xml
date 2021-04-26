@@ -6,5 +6,6 @@
 
     <include file="db/changelog/20210418180000_tb_usuario.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/20210419180000_tb_conta.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/20210421043200_tb_transferencia.xml" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>
