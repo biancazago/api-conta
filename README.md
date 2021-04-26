@@ -67,7 +67,7 @@ Api exerterna não autorizar: "Transferencia não autorizada"
 
  ### Modelagem do banco 
 
- ![alt text](/imagens/modelagem_banco.png)
+ ![alt text](/imagens/modelagem.png)
 
  
 ## Exemplos de requisições
